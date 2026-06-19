@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone ,Shield } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import Logo from "../assets/logo.png";
 
 const navItems = [
   { path: "/", label: "Home" },
@@ -27,11 +26,9 @@ function Header() {
 
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-3">
-          <img
-            src={Logo}
-            alt="PrimeShield"
-            className="w-12 h-12 rounded-xl"
-          />
+         <div className="w-10 h-10 text-yellow-500 bg-blue-700 flex items-center justify-center">
+         <Shield size={16} />
+         </div>
 
           <div>
             <h1 className="font-bold text-2xl text-gray-900">
