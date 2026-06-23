@@ -2,10 +2,10 @@ import './App.css'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import SocialLinks from './components/SocialLinks'
+import Home from './pages/Home'  //never lazy load home page, as it is the most visited page and we want it to load as fast as possible
 
 const Header = lazy(() => import('./components/Header'))
 const Footer = lazy(() => import('./components/Footer'))
-const Home = lazy(() => import('./pages/Home'))
 const About  = lazy(() => import('./pages/About'))
 const Services = lazy(() => import('./pages/Services'))
 const Industries = lazy(() => import('./pages/Industries'))
