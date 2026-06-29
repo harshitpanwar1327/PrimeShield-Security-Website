@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Menu, X, Phone ,Shield } from "lucide-react";
+import { Menu, X, Phone, Shield } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -18,28 +18,30 @@ function Header() {
   const navClass = ({ isActive }: { isActive: boolean }) =>
     isActive
       ? "text-blue-600 font-semibold"
-      : "text-gray-700 hover:text-blue-600 transition";
+      : "text-slate-700 font-medium hover:text-blue-600 transition duration-300";
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-slate-200">
+      <div className="max-w-7xl mx-auto px-8 h-24 flex items-center justify-between">
 
         {/* Logo */}
         <NavLink to="/" className="flex items-center gap-3">
-         <div className="w-10 h-10 text-yellow-500 bg-blue-700 flex items-center justify-center">
-         <Shield size={16} />
-         </div>
+
+          <div className="w-12 h-12 rounded-xl bg-[#0F172A] flex items-center justify-center shadow-lg">
+            <Shield className="text-[#FBBF24]" size={22} />
+          </div>
 
           <div>
-            <h1 className="font-bold text-2xl text-gray-900">
+            <h1 className="text-2xl font-extrabold tracking-tight text-[#0F172A]">
               PrimeShield
-              <span className="text-blue-600"> Security</span>
+              <span className="text-[#2563EB]"> Security</span>
             </h1>
           </div>
+
         </NavLink>
 
-        {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-8">
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-10">
           {navItems.map((item) => (
             <NavLink
               key={item.path}
@@ -49,18 +51,26 @@ function Header() {
               {item.label}
             </NavLink>
           ))}
-        </div>
+        </nav>
 
-        {/* Desktop Right Side */}
+        {/* Right Side */}
         <div className="hidden lg:flex items-center gap-6">
 
-          <div className="flex items-center gap-2 text-gray-800 font-medium">
-            <Phone size={18} />
+          <div className="flex items-center gap-2 text-[#0F172A] font-medium">
+
+            <Phone
+              size={18}
+              className="text-[#2563EB]"
+            />
+
             <span>+1 (800) 555-0199</span>
+
           </div>
 
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition">
+          <button className="bg-[#2563EB] hover:bg-[#1D4ED8] text-white px-7 py-3 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition duration-300 font-semibold">
+
             Get a Quote
+
           </button>
 
         </div>
@@ -70,26 +80,31 @@ function Header() {
           onClick={() => setMenuOpen(!menuOpen)}
           className="lg:hidden"
         >
-          {menuOpen ? <X /> : <Menu />}
+          {menuOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
+
       </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
+
         {menuOpen && (
+
           <motion.div
-            initial={{ y: -400 }}
+            initial={{ y: -500 }}
             animate={{ y: 0 }}
-            exit={{ y: -400 }}
+            exit={{ y: -500 }}
             transition={{
               duration: 0.35,
               ease: "easeInOut",
             }}
-            className="lg:hidden bg-white border-t border-gray-200 shadow-lg"
+            className="lg:hidden bg-white shadow-xl border-t border-slate-200"
           >
-            <div className="flex flex-col p-6 gap-5">
+
+            <div className="flex flex-col gap-5 p-6">
 
               {navItems.map((item) => (
+
                 <NavLink
                   key={item.path}
                   to={item.path}
@@ -98,21 +113,36 @@ function Header() {
                 >
                   {item.label}
                 </NavLink>
+
               ))}
 
-              <div className="flex items-center gap-2 pt-3">
-                <Phone size={18} />
-                <span>+1 (800) 555-0199</span>
+              <div className="flex items-center gap-2 pt-4">
+
+                <Phone
+                  size={18}
+                  className="text-[#2563EB]"
+                />
+
+                <span className="font-medium">
+                  +1 (800) 555-0199
+                </span>
+
               </div>
 
-              <button className="bg-blue-600 text-white py-3 rounded-xl font-semibold">
+              <button className="bg-[#2563EB] text-white py-3 rounded-xl font-semibold shadow-lg">
+
                 Get a Quote
+
               </button>
 
             </div>
+
           </motion.div>
+
         )}
+
       </AnimatePresence>
+
     </header>
   );
 }
